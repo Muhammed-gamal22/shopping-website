@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  cartActions,
-  fetchCartData,
-  resetCartData,
-  sendCartData,
-} from "../store/cart-slice";
+import { fetchCartData, sendCartData } from "../store/cart-slice";
 import CartItem from "../components/CartItem";
 import Modal from "../components/Modal";
 const Container = styled.div`

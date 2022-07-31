@@ -1,16 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { IconButton, Badge } from "@material-ui/core";
-import {
-  ShoppingCart,
-  LockOutlined,
-  FavoriteBorderOutlined,
-} from "@material-ui/icons";
+import { ShoppingCart, LockOutlined } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AuthActions } from "../store/auth-slice";
-import { cartActions, fetchCartData } from "../store/cart-slice";
-import { getFullName } from "../store/cart-slice";
+import { fetchCartData } from "../store/cart-slice";
+
 const Container = styled.header`
   width: 100%;
   height: 70px;
@@ -47,7 +43,6 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(AuthActions.logout());
     dispatch(fetchCartData(true));
-    // dispatch(getFullName());
     navigate("/");
   };
   return (
