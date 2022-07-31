@@ -1,24 +1,24 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import CartPage from "./pages/CartPage";
-import Header from "./components/Header";
 import styled from "styled-components";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
-import LoginPage from "./pages/LoginPage";
-
 import { useSelector } from "react-redux";
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const CartPage = React.lazy(() => import("./pages/CartPage"));
+const Header = React.lazy(() => import("./components/Header"));
+const ProductDetailsPage = React.lazy(() =>
+  import("./pages/ProductDetailsPage")
+);
+const LoginPage = React.lazy(() => import("./pages/LoginPage"));
 const Container = styled.div`
   background-color: #fefefe;
   padding-top: 70px;
-
   width: 100%;
 `;
 
 const App = () => {
   const token = useSelector((state) => state.auth.token);
   return (
-    <>
+    <Suspense fallback={""}>
       <Header />
       <Container>
         <Routes>
@@ -37,7 +37,7 @@ const App = () => {
           {token && <Route path="*" element={<Navigate to="/products" />} />}
         </Routes>
       </Container>
-    </>
+    </Suspense>
   );
 };
 
